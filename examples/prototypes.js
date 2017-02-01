@@ -9,11 +9,10 @@ var Proto = {
     console.log (greet + '! ' + this.name);
   }
 };
-var person1;
-var person2;
 
-person1 = Object.create(Proto).constructor('John', 25, 'male');
-person2 = Object.create(Proto);
+
+var person1 = Object.create(Proto).constructor('John', 25, 'male');
+var person2 = Object.create(Proto);
 console.log(person2);
 console.log(Proto.isPrototypeOf(person1));
 person1.greeting('hi');
