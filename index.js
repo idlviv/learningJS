@@ -1,72 +1,49 @@
-var animal = {
-  eats : true
-};
-var rabbit = {
-  jumps : true,
-  __proto__ : animal
-};
-/**
-  For..in перелічує всі властивості: власні і прототипа
-*/
+/** epam1 */
+var array = [2, 4, 5, 8];
 
-for (var key in rabbit) {
-  console.log(key + ' = ' + rabbit[key]);
+function printing(element) {
+  console.log (element);
 }
-console.log(rabbit.hasOwnProperty('eats'));
-console.log(rabbit.hasOwnProperty('jumps'));
 
-/**
- відсіюємо властивості прототипа (тільки власні)
- */
-for (var key in rabbit) {
-  if (rabbit.hasOwnProperty(key)){
-    console.log(key + ' = ' + rabbit[key]);
+function forEach(arr, fx) {
+  for (var i = 0; i < arr.length; i++){
+    fx(arr[i]);
   }
 }
-/**
-  Створює пустий об"єкт, який немає вбудованих властивостей прототипа
- */
-var fox = Object.create(null);
-fox.name = 'Foxt';
-console.log('is toString in fox ', fox.toString);
 
+//forEach(array, printing);
 
-/**
- Створюємо конструктор Rabbit
- */
-function Rabbit(name) {
-  this.name = name;
+/** epam2 */
+var transformedArray = [];
+
+function increasing(element) {
+   return transformedArray.push(++element);
 }
 
-var RabbitP = {
-  constructor : function (name){
-    this.name = name;
-  }
-};
-/**
- Rabbit-а прототипом ставимо animal.
- Властивість prototype використовують тільки в конструктора
- */
-Rabbit.prototype = animal;
-RabbitP.constructor.prototype = animal;
-console.log(Rabbit);
-console.log(RabbitP.constructor);
+function getTransformedArray(arr, fx) {
+  forEach(arr, fx);
+  return transformedArray;
+}
 
-/**
- Створюємо новий екземпляр homeRabbit
- */
-homeRabbit = new Rabbit('White');
-homeRabbitP = new RabbitP.constructor('Black1');
+// getTransformedArray(array, increasing);
+// console.log (transformedArray);
 
-homeRabbit2 = Object.create(Rabbit);
-// homeRabbit2.name('White2');
-homeRabbit2P = Object.create(RabbitP);
-homeRabbit2P.constructor('Black2');
+/** epam3 */
+var presidents = [
+  { name: 'George',
+    surname: 'Kush' } ,
+  { name: 'Barako',
+    surname: 'Obaame' }];
 
-console.log('homeRabbit ', homeRabbit, ' ' ,homeRabbit.name);
-console.log('homeRabbitP ', homeRabbitP, ' ' , homeRabbitP.name);
-console.log('homeRabbit2 ', homeRabbit2, ' ' ,homeRabbit2.name);
-console.log('homeRabbit2P ', homeRabbit2P, ' ' ,homeRabbitP.name);
+function labeling(element){
+  labelsArray.push(element.name);
+  return console.log(labelsArray);
+}
 
+function pluckByAttribute(arr, fx) {
+  getTransformedArray(arr, fx)
+}
+
+pluckByAttribute(presidents, labeling);
 
 
