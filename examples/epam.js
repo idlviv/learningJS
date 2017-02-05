@@ -1,3 +1,6 @@
+/**
+ * Created by igor on 05.02.17.
+ */
 "use strict";
 /**
  * epam 2.1
