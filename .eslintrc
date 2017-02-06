@@ -34,7 +34,7 @@
     "no-invalid-regexp": 2,          // http://eslint.org/docs/rules/no-invalid-regexp
     "no-irregular-whitespace": 2,    // http://eslint.org/docs/rules/no-irregular-whitespace
     "no-obj-calls": 2,               // http://eslint.org/docs/rules/no-obj-calls
-    "quote-props": 2,           // http://eslint.org/docs/rules/no-reserved-keys
+    //"quote-props": 2,           // http://eslint.org/docs/rules/no-reserved-keys
     "no-sparse-arrays": 2,           // http://eslint.org/docs/rules/no-sparse-arrays
     "no-unreachable": 2,             // http://eslint.org/docs/rules/no-unreachable
     "use-isnan": 2,                  // http://eslint.org/docs/rules/use-isnan
@@ -132,6 +132,12 @@
     "space-before-function-paren": [2, "never"], // http://eslint.org/docs/rules/space-before-function-paren
     "space-infix-ops": 2,            // http://eslint.org/docs/rules/space-infix-ops
 //    "space-return-throw-case": 2,    // http://eslint.org/docs/rules/space-return-throw-case
-    "spaced-comment": 2        // http://eslint.org/docs/rules/spaced-line-comment
+    "spaced-comment": 2,        // http://eslint.org/docs/rules/spaced-line-comment
+    "object-curly-spacing": ["error", "always"],
+    "array-bracket-spacing": ["error", "always"],
+    "space-in-parens": ["error", "always"]
+
+
+
   }
 }
