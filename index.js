@@ -1,17 +1,30 @@
 var parentsU;
 $(document).ready(function () {
-$(window).resize(function (e) {
-  $('h1').text('width'+ window.innerWidth);
-});
+  $(window).resize(function (e) {
+    $('h1').text('width' + window.innerWidth);
+  });
+  $('#btnOk').hover(function (e) {
+    // console.log(e);
+    e.target.textContent = 'Pressed';
+    //$(this).text('Pressed');
+  });
 
+  $('#btnTest1').on({
+    click: function (e) {
+      e.target.textContent = 'click';
+    },
 
-
-
-
+    mouseover: function (e) {
+      console.log('press');
+      e.target.textContent = 'mouse over ' + e.data.user;
+    }
+  },
+    { user: 'userText' }
+  );
 
   // var greeting = $('#greeting');
-  // console.log(greeting);
   // console.log(greeting.parents().length);
+  // console.log(greeting);
   // console.log(greeting.parentsUntil('article'));
   //
   // var menuItem = $('#list3');
@@ -38,10 +51,7 @@ $(window).resize(function (e) {
   // console.log('div>p', $('div>p'));
   // console.log('i+b', $('i+b'));
 
-
 });
-
-
 
 //
 // window.addEventListener('load', function () {
