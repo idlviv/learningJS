@@ -3,24 +3,85 @@
  */
 
 $(document).ready(function() {
-  $('#blockDivs').click(function(e) {
-    // var bigDivC = document.querySelector('#Div6');
-    // bigDivC.style.backgroundColor = e.target.classList.style.backgroundColor;
-    var model = $('#div6');
-    model.css('left', '300px');
-    model.css('background-color', $(e.target).css('background-color'));
-    model.fadeIn(1000);
-    
-    console.log(e.target);
-    console.log($(e.target));
-    console.log(this);
-    console.log($(this));
-    // var model = $(this);
+  $('#mail_send').submit(function() {
+    var str = $(this).serialize(); // name=value&..
+    $.ajax({
+      type: "POST",
+      url: "php/hello.php",
+      data: str,
+      success: function(html) {
+        console.log(html);
+        $('#ajaxContent2').html(html);
+      }
+    });
+    return false;
+  });
 
-    // var color = $(this).target;
-    // console.log($(e),$(this));
+
+
+
+  $.ajax({
+    url: 'php/time.php',
+    cache: false,
+    success: function(html) {
+      console.log(html);
+      $('#ajaxContent1').html(html);
+    }
   });
+
+  var $model = $('#div6');
+  var $hided = null;
+  $('#blockDivs').click(function(e) {
+    var $jtarget = $(e.target);
+    if ($hided) {
+      $hided.css('opacity', '1');
+    }
+    $model.css({
+      'left': $jtarget.offset().left,
+      'top': $jtarget.offset().top,
+      'height': $jtarget.height(),
+      'width': $jtarget.width(),
+      'background-color': $jtarget.css('background-color'),
+      'opacity': 1,
+      'display': 'block',
+    });
+    $jtarget.css('opacity', '0');
+    $hided = $jtarget;
+
+    var n = 1;
+    $model
+      .animate({
+        width: 300,
+        height: 300,
+      }, {
+        duration: 1000,
+        queue: false,
+        specialEasing: {
+          height: 'linear',
+          width: 'swing',
+        },
+        complete: function(){
+          console.log('Animation completed');
+        },
+        step: function(){
+          console.log(n++, '- step completed');
+          if (n === 60) {
+            $model.stop();
+          }
+        },
+      })
+      .animate({
+        left: 200,
+        top: 200
+      }, 500);
+
+  });
+
   $('#div6').on('click', function() {
-    $(this).fadeOut(1000);
+    $hided.css('opacity', '1');
+    // $(this).fadeOut(1000);
+    $model.css('left', '300px');
+    $model.css('top', '400px');
   });
+
 });
