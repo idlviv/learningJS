@@ -117,4 +117,5 @@ alert(filter(arr, function(a) {
 
 alert( filter(arr, inBetween(3, 6)) ); // 3,4,5,6
 
-alert( filter(arr, inArray([1, 2, 10])) ); // 1,2
+alert( filter(arr, inArray([1, 2, 10])) );
+// 1,2
