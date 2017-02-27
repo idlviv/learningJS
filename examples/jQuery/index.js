@@ -3,6 +3,29 @@
  */
 
 $(document).ready(function() {
+//   $('#mail_send').submit(function() {
+//     var str = $(this).serialize(); // name=value&..
+//     $.ajax({
+//       type: "POST",
+//       url: "php/hello.php",
+//       data: str,
+//       success: function(html) {
+//         console.log(html);
+//         $('#ajaxContent2').html(html);
+//       }
+//     });
+//     return false;
+//   });
+//
+//
+//   $.ajax({
+//     url: 'php/time.php',
+//     cache: false,
+//     success: function(html) {
+//       console.log(html);
+//       $('#ajaxContent1').html(html);
+//     }
+//   });
 
   var $model = $('#div6');
   var $hided = null;

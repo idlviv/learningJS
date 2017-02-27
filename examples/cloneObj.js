@@ -1,4 +1,4 @@
-function assignObj (target, source, options) {
+function assignObj(target, source, options) {
   /**
    Копіює об"єкт: прототип + властивості власні, перелічувані
    (enumerable) + дескриптори

@@ -26,7 +26,7 @@ function times(n, fx, arg, gw, forBind) {
     var bounded = fx.bind(forBind);
     bounded(arg, gw); // Hi Elodie, I'm Christophe.
 
-    /**
+    /**   times(1, christophe.greet, elodie, 'Hi ', christophe);
      до ф-ї fx прив'язали this, який передали через ф-ю times,
      (аргумент forBind, в цьому конкретному випадку - christophe)
      і помістили це все в bounded, яку можна використовувати

@@ -74,7 +74,7 @@ speedy.found("яблоко");
 speedy.found("орех");
 
 console.log(speedy.food.length ); // 2
-console.log( lazy.food.length ); // 2 (!??)
+console.log(lazy.food.length); // 2 (!??)
 
 /**
  Годинник
