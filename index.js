@@ -95,27 +95,59 @@
 // }); // Маша, Вася, Петя
 
 
-function filter(arr, func) {
-  var a = [];
-  arr.forEach(function(item) {
-    if (func(item)) {
-      a.push(item);
-    }
-  });
-  return a;
+// function filter(arr, func) {
+//   var a = [];
+//   arr.forEach(function(item) {
+//     if (func(item)) {
+//       a.push(item);
+//     }
+//   });
+//   return a;
+// }
+//
+// function inBetween(a, b) {
+//   return function(item) {
+//     if (item >= a && item <= b) {
+//       return true;
+//     }
+//   }
+// }
+//
+// function inArray(arr) {
+//   return function(item) {
+//     if (item in arr) {
+//       return true;
+//     }
+//   }
+// }
+//
+// var arr = [1, 2, 3, 4, 5, 6, 7];
+//
+// // alert(filter(arr, function(a) {
+// //   return a % 2 == 0
+// // })); // 2,4,6
+//
+// // alert( filter(arr, inBetween(3, 6)) ); // 3,4,5,6
+//
+// alert( filter(arr, inArray([1, 2, 10])) );
+// // 1,2
+
+function makeArmy() {
+
+  var shooters = [];
+
+  for (var i = 0; i < 10; i++) {
+    var shooter = function() { // функция-стрелок
+      alert( i ); // выводит свой номер
+    };
+    shooters.push(shooter);
+   }
+
+  return shooters;
 }
 
-function inBetween(a, b) {
+var army = makeArmy();
 
-}
-
-var arr = [1, 2, 3, 4, 5, 6, 7];
-
-alert(filter(arr, function(a) {
-  return a % 2 == 0
-})); // 2,4,6
-
-alert( filter(arr, inBetween(3, 6)) ); // 3,4,5,6
-
-alert( filter(arr, inArray([1, 2, 10])) );
-// 1,2
+army[0](); // стрелок выводит 10, а должен 0
+army[5](); // стрелок выводит 10...
+// .. все стрелки выводят 10 вместо 0,1,2...9
