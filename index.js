@@ -94,28 +94,62 @@
 //   console.log('Маша, Вася, Петя', user.name);
 // }); // Маша, Вася, Петя
 
+var User = function() {
+  this.progress = 0;
+  this.ranks = [-8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8];
+  this.rankPosition = 0;
+  this.rank = this.ranks[this.rankPosition];
+};
 
-function filter(arr, func) {
-  var a = [];
-  arr.forEach(function(item) {
-    if (func(item)) {
-      a.push(item);
-    }
-  });
-  return a;
+function checkProgress(p, self) {
+  var incRank;
+  var incProgress;
+  // console.log(self);
+  if (p >= 100) {
+    console.log(p);
+    incProgress = p % 100;
+    incRank = (p - incProgress) / 100;
+    self.progress = incProgress;
+    self.rankPosition += incRank;
+    console.log(self.rankPosition);
+  }
+
+  if (self.rank >= 8) {
+    self.rank = 8;
+    self.progress = 0;
+  }
 }
 
-function inBetween(a, b) {
+User.prototype.incProgress = function(p) {
+  // var self = this;
+  var dif;
+  var inc;
 
-}
+  if (p == this.rank) {
+    this.progress += 3;
+    // console.log('3', this.progress);
+    checkProgress(this.progress, this);
+  }
+  if (p < this.rank && this.rank - p < 2) {
+    this.progress += 1;
+    // console.log('1', this.progress);
+    checkProgress(this.progress, this);
 
-var arr = [1, 2, 3, 4, 5, 6, 7];
+  }
+  if (p > this.rank) {
+    dif = p - this.rank;
+    inc = dif * dif * 10;
+    this.progress += inc;
+    checkProgress(this.progress, this);
+  }
+  this.rank = this.ranks[this.rankPosition];
 
-alert(filter(arr, function(a) {
-  return a % 2 == 0
-})); // 2,4,6
+  console.log('rank ', this.rank, ' progress ', this.progress, ' position ', this.rankPosition);
 
-alert( filter(arr, inBetween(3, 6)) ); // 3,4,5,6
+};
 
-alert( filter(arr, inArray([1, 2, 10])) );
-// 1,2
+var user = new User();
+
+user.incProgress(1);
+// user.incProgress(-7);
+
