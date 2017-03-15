@@ -108,7 +108,11 @@ var User = function() {
   this.rank = this.ranks[this.rankPosition];
 };
 
-<<<<<<< HEAD
+function UserException(message) {
+  this.message = message;
+  this.name = "My exception";
+}
+
 function checkProgress(p, self) {
   var incRank;
   var incProgress;
@@ -120,6 +124,7 @@ function checkProgress(p, self) {
     self.progress = incProgress;
     self.rankPosition += incRank;
     console.log(self.rankPosition);
+    self.rank = self.ranks[self.rankPosition];
   }
 
   if (self.rank >= 8) {
@@ -130,27 +135,33 @@ function checkProgress(p, self) {
 
 User.prototype.incProgress = function(p) {
   // var self = this;
+  if (!(this.ranks.indexOf(p) >= 0)) {
+    throw new UserException('Wrong rank');
+    return;
+  }
   var dif;
   var inc;
 
-  if (p == this.rank) {
+  if (p === this.rank) {
     this.progress += 3;
-    // console.log('3', this.progress);
+    console.log('3', this.progress);
     checkProgress(this.progress, this);
   }
-  if (p < this.rank && this.rank - p < 2) {
+  if (this.ranks.indexOf(p) < this.ranks.indexOf(this.rank) &&
+    this.ranks.indexOf(this.rank) - this.ranks.indexOf(p) < 2) {
     this.progress += 1;
-    // console.log('1', this.progress);
+    console.log('1', this.progress);
     checkProgress(this.progress, this);
 
   }
   if (p > this.rank) {
-    dif = p - this.rank;
+    dif = this.ranks.indexOf(p) - this.ranks.indexOf(this.rank);
+    // dif = p - this.rank.position;
     inc = dif * dif * 10;
     this.progress += inc;
     checkProgress(this.progress, this);
   }
-  this.rank = this.ranks[this.rankPosition];
+  // this.rank = this.ranks[this.rankPosition];
 
   console.log('rank ', this.rank, ' progress ', this.progress, ' position ', this.rankPosition);
 
@@ -158,4 +169,8 @@ User.prototype.incProgress = function(p) {
 
 var user = new User();
 
-user.incProgress(1);
+try {
+  user.incProgress(-9);
+} catch (e) {
+  console.log(e.message);
+}

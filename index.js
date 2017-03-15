@@ -132,22 +132,96 @@
 // alert( filter(arr, inArray([1, 2, 10])) );
 // // 1,2
 
-function makeArmy() {
+// function makeArmy() {
+//
+//   var shooters = [];
+//
+//   for (var i = 0; i < 10; i++) {
+//     var shooter = function() { // функция-стрелок
+//       alert( i ); // выводит свой номер
+//     };
+//     shooters.push(shooter);
+//    }
+//
+//   return shooters;
+// }
+//
+// var army = makeArmy();
+//
+// army[0](); // стрелок выводит 10, а должен 0
+// army[5](); // стрелок выводит 10...
+// // .. все стрелки выводят 10 вместо 0,1,2...9
 
-  var shooters = [];
+var User = function() {
+  this.progress = 0;
+  this.ranks = [-8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8];
+  this.rankPosition = 0;
+  this.rank = this.ranks[this.rankPosition];
+};
 
-  for (var i = 0; i < 10; i++) {
-    var shooter = function() { // функция-стрелок
-      alert( i ); // выводит свой номер
-    };
-    shooters.push(shooter);
-   }
-
-  return shooters;
+function UserException(message) {
+  this.message = message;
+  this.name = "My exception";
 }
 
-var army = makeArmy();
+function checkProgress(p, self) {
+  var incRank;
+  var incProgress;
+  // console.log(self);
+  if (p >= 100) {
+    console.log(p);
+    incProgress = p % 100;
+    incRank = (p - incProgress) / 100;
+    self.progress = incProgress;
+    self.rankPosition += incRank;
+    console.log(self.rankPosition);
+    self.rank = self.ranks[self.rankPosition];
+  }
 
-army[0](); // стрелок выводит 10, а должен 0
-army[5](); // стрелок выводит 10...
-// .. все стрелки выводят 10 вместо 0,1,2...9
+  if (self.rank >= 8) {
+    self.rank = 8;
+    self.progress = 0;
+  }
+}
+
+User.prototype.incProgress = function(p) {
+  // var self = this;
+  if (!(this.ranks.indexOf(p) >= 0)) {
+    throw new UserException("Wrong rank");
+    return;
+  }
+  var dif;
+  var inc;
+
+  if (p === this.rank) {
+    this.progress += 3;
+    console.log('3', this.progress);
+    checkProgress(this.progress, this);
+  }
+  if (this.ranks.indexOf(p) < this.ranks.indexOf(this.rank) &&
+    this.ranks.indexOf(this.rank) - this.ranks.indexOf(p) < 2) {
+    this.progress += 1;
+    console.log('1', this.progress);
+    checkProgress(this.progress, this);
+
+  }
+  if (p > this.rank) {
+    dif = this.ranks.indexOf(p) - this.ranks.indexOf(this.rank);
+    // dif = p - this.rank.position;
+    inc = dif * dif * 10;
+    this.progress += inc;
+    checkProgress(this.progress, this);
+  }
+  // this.rank = this.ranks[this.rankPosition];
+
+  console.log('rank ', this.rank, ' progress ', this.progress, ' position ', this.rankPosition);
+
+};
+
+var user = new User();
+
+try {
+  user.incProgress(-9);
+} catch (e) {
+  console.log(e.message);
+}
