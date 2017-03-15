@@ -23,6 +23,9 @@ console.log(elodie);
 function times(n, fx, arg, gw, forBind) {
   for (var index = 0; index < n; ++index) {
 
+    // times(1, christophe.greet, elodie, 'Hi ', christophe);
+// => Three times "Hi Elodie, I'm undefined.
+
     var bounded = fx.bind(forBind);
     bounded(arg, gw); // Hi Elodie, I'm Christophe.
 

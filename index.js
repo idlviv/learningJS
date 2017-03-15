@@ -94,62 +94,60 @@
 //   console.log('Маша, Вася, Петя', user.name);
 // }); // Маша, Вася, Петя
 
-var User = function() {
-  this.progress = 0;
-  this.ranks = [-8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8];
-  this.rankPosition = 0;
-  this.rank = this.ranks[this.rankPosition];
-};
 
-function checkProgress(p, self) {
-  var incRank;
-  var incProgress;
-  // console.log(self);
-  if (p >= 100) {
-    console.log(p);
-    incProgress = p % 100;
-    incRank = (p - incProgress) / 100;
-    self.progress = incProgress;
-    self.rankPosition += incRank;
-    console.log(self.rankPosition);
-  }
+// function filter(arr, func) {
+//   var a = [];
+//   arr.forEach(function(item) {
+//     if (func(item)) {
+//       a.push(item);
+//     }
+//   });
+//   return a;
+// }
+//
+// function inBetween(a, b) {
+//   return function(item) {
+//     if (item >= a && item <= b) {
+//       return true;
+//     }
+//   }
+// }
+//
+// function inArray(arr) {
+//   return function(item) {
+//     if (item in arr) {
+//       return true;
+//     }
+//   }
+// }
+//
+// var arr = [1, 2, 3, 4, 5, 6, 7];
+//
+// // alert(filter(arr, function(a) {
+// //   return a % 2 == 0
+// // })); // 2,4,6
+//
+// // alert( filter(arr, inBetween(3, 6)) ); // 3,4,5,6
+//
+// alert( filter(arr, inArray([1, 2, 10])) );
+// // 1,2
 
-  if (self.rank >= 8) {
-    self.rank = 8;
-    self.progress = 0;
-  }
+function makeArmy() {
+
+  var shooters = [];
+
+  for (var i = 0; i < 10; i++) {
+    var shooter = function() { // функция-стрелок
+      alert( i ); // выводит свой номер
+    };
+    shooters.push(shooter);
+   }
+
+  return shooters;
 }
 
-User.prototype.incProgress = function(p) {
-  // var self = this;
-  var dif;
-  var inc;
+var army = makeArmy();
 
-  if (p == this.rank) {
-    this.progress += 3;
-    // console.log('3', this.progress);
-    checkProgress(this.progress, this);
-  }
-  if (p < this.rank && this.rank - p < 2) {
-    this.progress += 1;
-    // console.log('1', this.progress);
-    checkProgress(this.progress, this);
-
-  }
-  if (p > this.rank) {
-    dif = p - this.rank;
-    inc = dif * dif * 10;
-    this.progress += inc;
-    checkProgress(this.progress, this);
-  }
-  this.rank = this.ranks[this.rankPosition];
-
-  console.log('rank ', this.rank, ' progress ', this.progress, ' position ', this.rankPosition);
-
-};
-
-var user = new User();
-
-user.incProgress(1);
-// user.incProgress(-7);
-
+army[0](); // стрелок выводит 10, а должен 0
+army[5](); // стрелок выводит 10...
+// .. все стрелки выводят 10 вместо 0,1,2...9
