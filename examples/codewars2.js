@@ -177,3 +177,55 @@
 // formatDuration(3600); // "1 hour");
 // strFormat = [];
 // formatDuration(36620000000); // "1 hour, 1 minute and 2 seconds");
+
+// function isSolved(board) {
+//   var winner;
+//   var zero = false;
+//   for (var j = 0; j < 3; j++) {
+//     // console.log(board[0][j], board[1][j], board[2][j]);
+//     if (board[0][j] === board[1][j] && board[1][j] === board[2][j] && board[0][j] !== 0) {
+//       winner = board[0][j];
+//     }
+//     // console.log(board[j][0], board[j][1], board[j][2]);
+//     if (board[j][0] === board[j][1] && board[j][1] === board[j][2] && board[j][0] !== 0) {
+//       winner = board[j][0];
+//     }
+//   }
+//   if (board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0] !== 0) {
+//     winner = board[0][0];
+//   }
+//   if (board[2][0] === board[1][1] && board[1][1] === board[0][2] && board[2][0] !== 0) {
+//     winner = board[2][0];
+//   }
+//   for (var i = 0; i < 3; i++) {
+//     for (var j = 0; j < 3; j++) {
+//       if (board[i][j] === 0) {
+//         zero = true;
+//       }
+//     }
+//   }
+//
+//   if (winner) {
+//     return winner;
+//   } else {
+//     if (zero) {
+//       console.log('not fin');
+//       return -1;
+//     } else {
+//       console.log('draw');
+//       return 0;
+//     }
+//   }
+// }
+//
+// console.log(isSolved(
+//   [[0,0,1],
+//     [0,1,2],
+//     [2,1,0]
+//   ]));
+//
+// console.log(isSolved(
+//   [[2,2,2],
+//     [0,1,2],
+//     [2,1,0]
+//   ]));
