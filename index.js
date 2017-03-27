@@ -3,28 +3,26 @@ window.addEventListener('load', function() {
 
   // Hiding text
   var btnHide = document.querySelector('#btnHide');
-  var textToHide = document.querySelector('#textHide');
+  var textToHide = document.querySelector('#textToHide');
+
   btnHide.addEventListener('click', function() {
     textToHide.classList.toggle('hide');
   });
 
   // Hiding list
   var labelHide = document.querySelector('#labelHide');
-  var listToHide = document.querySelector('#listToHide');
+  var sweets = document.querySelector('#sweets');
 
   labelHide.addEventListener('click', function() {
-    var str = labelHide.textContent;
-    // labelHide.textContent =
-    var p = str.slice(2);
-    console.log(p);
-    console.log(str.slice(0, 4));
-    console.log(str);
-    // var p1 = str.substring(2);
-    // console.log(p1);
-    // console.log(str.substring(0, 4));
-    // console.log(str);
-
-
+    sweets.classList.toggle('open');
   });
+
+  // Hiding pane
+  var removeButton = document.querySelectorAll('.remove-button');
+  for (var i = 0; i < removeButton.length; i++) {
+    removeButton[i].addEventListener('click', function(e) {
+      e.target.parentNode.classList.add('hide');
+    });
+  }
 
 });
