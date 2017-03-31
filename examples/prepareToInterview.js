@@ -1,4 +1,12 @@
 'use strict';
+
+// function fib(n) {
+//   return n <= 1 ? n : fib(n - 1) + fib(n - 2);
+// }
+//
+// alert( fib(3) ); // 2
+// alert( fib(7) ); // 13
+
 // function sum() {
 //   var a = 0;
 //   return function() {
@@ -12,10 +20,9 @@
 // p();
 // p();
 //
-// console.log(p());
-//
 // console.log(k());
-
+//
+// console.log(p());
 
 //
 // function makeCounter() {
@@ -31,7 +38,6 @@
 // console.log(lich);
 // alert(lich()); // 1
 // alert(lich()); // 2
-
 
 // function makeBuffer() {
 //   var buf = '';
