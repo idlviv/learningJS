@@ -1,28 +1,38 @@
 'use strict';
+
 window.addEventListener('load', function() {
 
-  // Hiding text
-  var btnHide = document.querySelector('#btnHide');
-  var textToHide = document.querySelector('#textToHide');
+  function Animal(name) {
+    this.name = name;
+    this.speed = 10;
+  }
+  Animal.prototype.run = function(speed) {
+    console.log('Run' + speed || this.speed);
+  };
 
-  btnHide.addEventListener('click', function() {
-    textToHide.classList.toggle('hide');
-  });
-
-  // Hiding list
-  var labelHide = document.querySelector('#labelHide');
-  var sweets = document.querySelector('#sweets');
-
-  labelHide.addEventListener('click', function() {
-    sweets.classList.toggle('open');
-  });
-
-  // Hiding pane
-  var removeButton = document.querySelectorAll('.remove-button');
-  for (var i = 0; i < removeButton.length; i++) {
-    removeButton[i].addEventListener('click', function(e) {
-      e.target.parentNode.classList.add('hide');
-    });
+  function WolfDog(color, name) {
+    Animal.call(this, name);
+    this.color = color;
   }
 
+  WolfDog.prototype = Object.create(Animal.prototype);
+  WolfDog.prototype.constructor = WolfDog;
+
+  WolfDog.prototype.howl = function() {
+    console.log('Howl');
+  };
+  WolfDog.prototype.run = function(speed) {
+    Animal.prototype.run.call(this, speed);
+    this.speed = speed;
+    // console.log('Run' + ++this.speed);
+  };
+
+  var dog = new WolfDog('White', 'bob');
+  console.log(dog);
+
+  dog.run(50);
+  console.log(dog);
+
+
 });
+
